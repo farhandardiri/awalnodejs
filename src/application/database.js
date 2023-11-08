@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import { logger } from "./logging";
+import { logger } from "./logging.js";
 
 
 export const prismaClient = new PrismaClient({
-     log: [
+  log: [
     {
       emit: 'event',
       level: 'query',
@@ -21,17 +21,17 @@ export const prismaClient = new PrismaClient({
       level: 'warn',
     },
   ],
-})
+});
 
 prismaClient.$on('error', (e) => {
-    logger.error(e)
-})
+  logger.error(e)
+});
 prismaClient.$on('warn', (e) => {
-    logger.warn(e)
-})
+  logger.warn(e)
+});
 prismaClient.$on('info', (e) => {
-    logger.info(e)
-})
+  logger.info(e)
+});
 prismaClient.$on('query', (e) => {
-    logger.info(e)
-})
+  logger.info(e)
+});
