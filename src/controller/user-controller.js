@@ -1,4 +1,5 @@
-import userSerevice from "../service/user-service.js"
+import userService from "../service/user-service.js";
+import userSerevice from "../service/user-service.js";
 
 const register = async (req, resp, next) => {
     try {
@@ -11,6 +12,18 @@ const register = async (req, resp, next) => {
     }
 }
 
+const login = async (req, resp, next) => {
+    try {
+        const result = await userService.login(req.body);
+        resp.status(200).json({
+            data: result
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
 export default {
-    register
+    register,
+    login
 }
